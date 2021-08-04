@@ -1,0 +1,40 @@
+{
+  "name": "subpkg-lambda-delete-posts",
+  "version": "1.0.0",
+  "description": "Lambda para borrar todos los post de la base de datos",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=lcov mocha test",
+    "start": "nodemon app.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
+    "build": "repack-zip",
+    "buildw": "repack-zip",
+    "postbuildw": "md dist | move /Y subpkg-lambda-delete-posts.zip dist/",
+    "postbuild": "mkdir dist | mv subpkg-lambda-delete-posts.zip dist/",
+    "prettier": "npx prettier --check"
+  },
+  "author": "godxvincent@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-sdk-mock": "^5.2.1",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.27.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.3",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jshint": "^2.12.0",
+    "mocha": "^9.0.1",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.2",
+    "repack-zip": "^0.2.8",
+    "sinon": "^11.1.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.956.0",
+    "mysql": "^2.18.1"
+  }
+}
