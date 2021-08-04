@@ -34,11 +34,33 @@ exports.handler = async event => {
     // );
     // response.body = JSON.stringify("Users table was read it");
     // response.data = responseQuery[0];
-    let affectedRowsAuthors = await dbObject.deleteReferences("posts_authors", "post_id", "posts", "id");
-    let affectedRowsMeta = await dbObject.deleteReferences("posts_meta", "post_id", "posts", "id");
-    let affectedRowsTags = await dbObject.deleteReferences("posts_tags", "post_id", "posts", "id");
-    let affectedRows = await dbObject.deleteAllData(constants.TABLE_NAME_POST);
-    response.body = JSON.stringify(`${affectedRows} records from post table were deleted`);
+    const affectedRowsAuthors = await dbObject.deleteReferences(
+      "posts_authors",
+      "post_id",
+      "posts",
+      "id"
+    );
+    console.log("Post-Authors Deleted: ", affectedRowsAuthors);
+    const affectedRowsMeta = await dbObject.deleteReferences(
+      "posts_meta",
+      "post_id",
+      "posts",
+      "id"
+    );
+    console.log("Post-Meta Deleted: ", affectedRowsMeta);
+    const affectedRowsTags = await dbObject.deleteReferences(
+      "posts_tags",
+      "post_id",
+      "posts",
+      "id"
+    );
+    console.log("Post-Tags Deleted: ", affectedRowsTags);
+    const affectedRows = await dbObject.deleteAllData(
+      constants.TABLE_NAME_POST
+    );
+    response.body = JSON.stringify(
+      `${affectedRows} records from post table were deleted`
+    );
     response.data = [];
     return response;
   } catch (error) {

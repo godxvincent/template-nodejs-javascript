@@ -1,4 +1,4 @@
-# lambda-delete-posts
+# template-nodejs-javascript
 
 [![node](https://img.shields.io/badge/node-v14.16.1-yellow.svg)](https://nodejs.org)
 [![npm](https://img.shields.io/badge/npm-v6.14.12-red.svg)](https://www.npmjs.com/)
@@ -11,6 +11,7 @@ You will need the following things properly installed on your computer.
 * [Node](https://nodejs.org)
 * [NPM](https://www.npmjs.com/)
 * [Sinon](https://preview.npmjs.com/package/sinon/v/5.0.9)
+* [JS-CSS-HTML Formatter - Pluggin VsCode](https://marketplace.visualstudio.com/items?itemName=lonefy.vscode-JS-CSS-HTML-formatter)
 
 ## Installation
 

@@ -6,7 +6,8 @@ const constants = require("../../src/utils/constans");
 const sinon = require("sinon");
 
 const response = {
-  Parameters: [{
+  Parameters: [
+    {
       Name: constants.PARAMETER_PATH + "PROTO",
       Value: "jdbc"
     },
@@ -104,7 +105,11 @@ describe("Testing Handler", function() {
     lambda.handler().then(data => {
       // assert.strictEqual(data.data.name, row.name, "It couldn't delete any data");
       console.log(data);
-      assert.strictEqual(JSON.parse(data.body), "100 records from post table were deleted", "It couldn't delete any data");
+      assert.strictEqual(
+        JSON.parse(data.body),
+        "100 records from post table were deleted",
+        "It couldn't delete any data"
+      );
       mySqlstub.restore();
       done();
     });
@@ -149,14 +154,15 @@ describe("Testing Handler", function() {
     mySqlstub.returns(successConnectionObjectErrorClose);
 
     // assert.rejects(lambda.handler());
-    lambda
-      .handler()
-      .then(data => {
-        console.log(data);
-        assert.strictEqual(JSON.parse(data.body), "There were an error closing the connection");
-        mySqlstub.restore();
-        done();
-      });
+    lambda.handler().then(data => {
+      console.log(data);
+      assert.strictEqual(
+        JSON.parse(data.body),
+        "There were an error closing the connection"
+      );
+      mySqlstub.restore();
+      done();
+    });
   });
 
   afterEach(function() {

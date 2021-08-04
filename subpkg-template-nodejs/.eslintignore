@@ -1,5 +1,5 @@
 node_modules/*
-test
+
 coverage/**
 .scannerwork/*
 .nyc_output/*

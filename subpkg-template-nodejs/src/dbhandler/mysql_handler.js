@@ -50,11 +50,14 @@ class MySqlHandler {
   /**
    * Delete all data from a table
    * @param {string} tableName
+   * @param {string} idJoin
+   * @param {string} subtable
+   * @param {string} idField
    * @return {promise}
    */
-  deleteReferences(tableName, id_join, subtable, id_field) {
+  deleteReferences(tableName, idJoin, subtable, idField) {
     return new Promise((resolve, reject) => {
-      const query = `DELETE FROM ${tableName} WHERE ${id_join} IN (SELECT ${id_field} FROM ${subtable});`;
+      const query = `DELETE FROM ${tableName} WHERE ${idJoin} IN (SELECT ${idField} FROM ${subtable});`;
       this.connection.query(query, (err, result) => {
         if (err) {
           reject(err);

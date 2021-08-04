@@ -1,32 +1,32 @@
 {
-    "name": "lambda-delete-posts",
-    "version": "1.0.0",
-    "private": true,
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/godxvincent/nordcloud-ghost.git"
-    },
-    "scripts": {
-        "postinstall": "subpkg install",
-        "test": "subpkg test",
-        "audit": "subpkg run audit",
-        "buildw": "subpkg run buildw",
-        "build": "subpkg run build",
-        "sonar": "subpkg run sonar",
-        "lint": "subpkg run lint",
-        "lint:fix": "subpkg run lint:fix",
-        "prettier:list": "subpkg run prettier:list",
-        "prettier:write": "subpkg run prettier:write",
-        "prettier": "subpkg run prettier",
-        "customScript": ""
-    },
-    "subPackages": [
-        "subpkg-lambda-delete-posts"
-    ],
-    "devDependencies": {
-        "jshint": "^2.13.0",
-        "nyc": "^15.1.0",
-        "subpackage": "^1.1.0"
-    },
-    "dependencies": {}
+  "name": "template-nodejs-javascript",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godxvincent/template-nodejs-javascript.git"
+  },
+  "scripts": {
+    "postinstall": "subpkg install",
+    "test": "subpkg test",
+    "audit": "subpkg run audit",
+    "buildw": "subpkg run buildw",
+    "build": "subpkg run build",
+    "sonar": "subpkg run sonar",
+    "lint": "subpkg run lint",
+    "lint:fix": "subpkg run lint:fix",
+    "prettier:list": "subpkg run prettier:list",
+    "prettier:write": "subpkg run prettier:write",
+    "prettier": "subpkg run prettier",
+    "customScript": ""
+  },
+  "subPackages": [
+    "subpkg-template-nodejs"
+  ],
+  "devDependencies": {
+    "jshint": "^2.13.0",
+    "nyc": "^15.1.0",
+    "subpackage": "^1.1.0"
+  },
+  "dependencies": {}
 }

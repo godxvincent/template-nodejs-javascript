@@ -5,45 +5,42 @@ const Mysql = require("mysql");
 
 let mysqlConnection;
 let mysqlFunctionMocked;
-let db_object;
+let dbObject;
 
 describe("DataBase Handler", function() {
   beforeEach(function() {
     mysqlConnection = Mysql.createConnection({ host: "localhost" });
     mysqlFunctionMocked = sinon.mock(mysqlConnection);
-    db_object = new db.MySqlHandler(mysqlConnection);
+    dbObject = new db.MySqlHandler(mysqlConnection);
   });
 
   it("Case 1 - Happy Path - Query Data", function(done) {
     const name = "john doe";
     const results = [{ id: 0, name: name }];
     // Se especifica el methodo a mockear en expects.
-    const expectation = mysqlFunctionMocked
+    mysqlFunctionMocked
       .expects("query")
       // Se dice conque parametros se va a llamar el metodo
       .withArgs("SELECT * FROM users;")
       // Si el metodo tiene un callback se debe especificar en que posicion de los argumentos (para el caso 1)
       // y los valores que se quieren de respuesta
       .callsArgWith(1, null, results);
-    db_object.queryAllData("users").then(data => {
+    dbObject.queryAllData("users").then(data => {
       assert.strictEqual(data[0].name, name);
       done();
     });
   });
 
   it("Case 2 - Fail Path - Query Data", function(done) {
-    const name = "john doe";
-    const results = [{ id: 0, name: name }];
-    const fields = ["id", "name"];
     // Se especifica el methodo a mockear en expects.
-    const expectation = mysqlFunctionMocked
+    mysqlFunctionMocked
       .expects("query")
       // Se dice conque parametros se va a llamar el metodo
       .withArgs("SELECT * FROM users;")
       // Si el metodo tiene un callback se debe especificar en que posicion de los argumentos (para el caso 1)
       // y los valores que se quieren de respuesta
       .callsArgWith(1, new Error("Error mockeado"), null);
-    assert.rejects(db_object.queryAllData("users"));
+    assert.rejects(dbObject.queryAllData("users"));
     done();
   });
 
@@ -57,7 +54,7 @@ describe("DataBase Handler", function() {
       // Si el metodo tiene un callback se debe especificar en que posicion de los argumentos (para el caso 1)
       // y los valores que se quieren de respuesta
       .callsArgWith(1, null, results);
-    db_object.deleteAllData("posts").then(data => {
+    dbObject.deleteAllData("posts").then(data => {
       assert.strictEqual(data, 1);
       done();
     });
@@ -72,7 +69,7 @@ describe("DataBase Handler", function() {
       // Si el metodo tiene un callback se debe especificar en que posicion de los argumentos (para el caso 1)
       // y los valores que se quieren de respuesta
       .callsArgWith(1, new Error("There was an error"), null);
-    assert.rejects(db_object.deleteAllData("posts"));
+    assert.rejects(dbObject.deleteAllData("posts"));
     done();
   });
 
@@ -85,7 +82,7 @@ describe("DataBase Handler", function() {
       // Si el metodo tiene un callback se debe especificar en que posicion de los argumentos (para el caso 1)
       // y los valores que se quieren de respuesta
       .callsArgWith(0, new Error("There was an error closing connection"));
-    assert.rejects(db_object.closeConnection());
+    assert.rejects(dbObject.closeConnection());
     done();
   });
 
@@ -96,7 +93,7 @@ describe("DataBase Handler", function() {
       // Si el metodo tiene un callback se debe especificar en que posicion de los argumentos que recibe la funcion
       // esta el callback luego se especifican los valores con los que se llamará y la de respuesta
       .callsArgWith(0, null);
-    db_object.closeConnection().then(() => {
+    dbObject.closeConnection().then(() => {
       done();
     });
   });
@@ -107,14 +104,18 @@ describe("DataBase Handler", function() {
     mysqlFunctionMocked
       .expects("query")
       // Se dice conque parametros se va a llamar el metodo
-      .withArgs("DELETE FROM posts_authors WHERE post_id IN (SELECT id FROM posts);")
+      .withArgs(
+        "DELETE FROM posts_authors WHERE post_id IN (SELECT id FROM posts);"
+      )
       // Si el metodo tiene un callback se debe especificar en que posicion de los argumentos (para el caso 1)
       // y los valores que se quieren de respuesta
       .callsArgWith(1, null, results);
-    db_object.deleteReferences("posts_authors", "post_id", "posts", "id").then(data => {
-      assert.strictEqual(data, 1);
-      done();
-    });
+    dbObject
+      .deleteReferences("posts_authors", "post_id", "posts", "id")
+      .then(data => {
+        assert.strictEqual(data, 1);
+        done();
+      });
   });
 
   it("Case 8 - Fail Path - Delete References", function(done) {
@@ -122,11 +123,15 @@ describe("DataBase Handler", function() {
     mysqlFunctionMocked
       .expects("query")
       // Se dice conque parametros se va a llamar el metodo
-      .withArgs("DELETE FROM posts_authors WHERE post_id IN (SELECT id FROM posts);")
+      .withArgs(
+        "DELETE FROM posts_authors WHERE post_id IN (SELECT id FROM posts);"
+      )
       // Si el metodo tiene un callback se debe especificar en que posicion de los argumentos (para el caso 1)
       // y los valores que se quieren de respuesta
       .callsArgWith(1, new Error("There was an error"), null);
-    assert.rejects(db_object.deleteReferences("posts_authors", "post_id", "posts", "id"));
+    assert.rejects(
+      dbObject.deleteReferences("posts_authors", "post_id", "posts", "id")
+    );
     done();
   });
 

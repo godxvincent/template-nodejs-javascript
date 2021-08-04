@@ -42,12 +42,12 @@ describe("Retrieve Parameters By Path", function() {
       }
     });
     AWSMock.setSDKInstance(AWS);
-    const ssm_client = new AWS.SSM({
+    const ssmClient = new AWS.SSM({
       apiVersion: "2014-11-06",
       region: "us-east-1"
     });
-    const ssm_object = new ssm.SSM(ssm_client);
-    ssm_object
+    const ssmObject = new ssm.SSM(ssmClient);
+    ssmObject
       .retrieveParameters(constants.PARAMETER_PATH)
       .then(data => {
         console.log(data);
@@ -69,14 +69,14 @@ describe("Retrieve Parameters By Path", function() {
       }
     });
     AWSMock.setSDKInstance(AWS);
-    const ssm_client = new AWS.SSM({
+    const ssmClient = new AWS.SSM({
       apiVersion: "2014-11-06",
       region: "us-east-1"
     });
-    const ssm_object = new ssm.SSM(ssm_client);
+    const ssmObject = new ssm.SSM(ssmClient);
     console.log("response antes de la prueba", response);
     assert.rejects(
-      ssm_object.retrieveParameters(constants.PARAMETER_PATH),
+      ssmObject.retrieveParameters(constants.PARAMETER_PATH),
       "Function should fail"
     );
     done();
@@ -94,14 +94,14 @@ describe("Retrieve Parameters By Path", function() {
       }
     });
     AWSMock.setSDKInstance(AWS);
-    const ssm_client = new AWS.SSM({
+    const ssmClient = new AWS.SSM({
       apiVersion: "2014-11-06",
       region: "us-east-1"
     });
-    const ssm_object = new ssm.SSM(ssm_client);
+    const ssmObject = new ssm.SSM(ssmClient);
     console.log("response antes de la prueba", response);
     assert.rejects(
-      ssm_object.retrieveParameters(constants.PARAMETER_PATH),
+      ssmObject.retrieveParameters(constants.PARAMETER_PATH),
       "Function should fail"
     );
     done();
@@ -131,10 +131,10 @@ describe("Retrieve Parameters By Path", function() {
   //         }
   //     });
   //     AWSMock.setSDKInstance(AWS);
-  //     const ssm_client = new AWS.SSM({ apiVersion: '2014-11-06', region: "us-east-1" });
-  //     let ssm_object = new ssm.SSM(ssm_client);
+  //     const ssmClient = new AWS.SSM({ apiVersion: '2014-11-06', region: "us-east-1" });
+  //     let ssmObject = new ssm.SSM(ssmClient);
   //     console.log("response antes de la prueba", response);
-  //     ssm_object.retrieveParameters(constants.PARAMETER_PATH).then(data => {
+  //     ssmObject.retrieveParameters(constants.PARAMETER_PATH).then(data => {
   //         assert.strictEqual(data.Parameters.NUEVO_PARAMETRO, NUEVO_VALOR);
   //         done();
   //     }).catch(err => {

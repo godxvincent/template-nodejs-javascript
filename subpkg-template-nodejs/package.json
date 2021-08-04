@@ -1,5 +1,5 @@
 {
-  "name": "subpkg-lambda-delete-posts",
+  "name": "subpkg-template-nodejs",
   "version": "1.0.0",
   "description": "Lambda para borrar todos los post de la base de datos",
   "main": "index.js",
@@ -10,9 +10,11 @@
     "lint:fix": "eslint --fix --ext .js,.jsx .",
     "build": "repack-zip",
     "buildw": "repack-zip",
-    "postbuildw": "md dist | move /Y subpkg-lambda-delete-posts.zip dist/",
-    "postbuild": "mkdir dist | mv subpkg-lambda-delete-posts.zip dist/",
-    "prettier": "npx prettier --check"
+    "postbuildw": "md dist | move /Y subpkg-template-nodejs.zip dist/",
+    "postbuild": "mkdir dist | mv subpkg-template-nodejs.zip dist/",
+    "prettier": "prettier --check \"./{test,src}/**/*.js\"",
+    "prettier:list": "prettier --list-different \"./{test,src}/**/*.js\" || ECHO .",
+    "prettier:write": "prettier --write \"./{test,src}/**/*.js\""
   },
   "author": "godxvincent@gmail.com",
   "license": "ISC",
