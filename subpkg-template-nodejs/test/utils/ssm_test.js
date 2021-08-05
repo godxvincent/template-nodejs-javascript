@@ -1,3 +1,5 @@
+/** @format */
+
 const assert = require("assert");
 const ssm = require("../../src/utils/ssm");
 const AWSMock = require("aws-sdk-mock");
