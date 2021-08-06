@@ -1,7 +1,10 @@
 # template-nodejs-javascript
 
-[![node](https://img.shields.io/badge/node-v14.16.1-yellow.svg)](https://nodejs.org)
-[![npm](https://img.shields.io/badge/npm-v6.14.12-red.svg)](https://www.npmjs.com/)
+[![node](https://img.shields.io/badge/node-v14.16.1-yellow.svg?logo=node.js&logoColor=green)](https://nodejs.org)
+[![npm](https://img.shields.io/badge/npm-v6.14.12-red.svg?logo=npm)](https://www.npmjs.com/)
+
+![](https://img.shields.io/badge/dgrijalva%2Fjwt--go-v3.2.0%2Bincompatible-blue?logo=Go&logoColor=white)
+Node.js
 
 ## Prerequisites
 
